@@ -18,6 +18,7 @@ export const useChat = () => {
     const [messages, setMessages] = useState<Array<Message>>([]);
     const [action, setAction] = useState<"type-cep" | "select-option">("select-option");
 
+    // @ts-ignore
     const [socket, setSocket] = useState<Socket<DefaultEventsMap, DefaultEventsMap> | undefined>(undefined);
 
     useEffect(() => {

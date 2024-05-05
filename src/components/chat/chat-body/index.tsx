@@ -13,6 +13,7 @@ export const ChatBody: React.FC<ChatBodyProps> = ({ open }) => {
     }
 
     return (
+
         <Flex
             height="400px"
             background="white"
@@ -24,5 +25,6 @@ export const ChatBody: React.FC<ChatBodyProps> = ({ open }) => {
 
             <ChatInput onSubmit={sendMessage} action={action} />
         </Flex>
+
     );
 };
