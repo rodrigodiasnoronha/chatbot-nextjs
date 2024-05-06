@@ -13,6 +13,12 @@ export const ChatMessage: React.FC<MessageProps> = ({ message, onSelectOption })
     const bgColor = { light: "gray.300", dark: "gray.600" };
     const textColor = { light: "black", dark: "white" };
 
+    const ref = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        ref.current?.scrollIntoView({ behavior: "smooth" });
+    }, []);
+
     if (message.type == "text") {
         return (
             <motion.div
@@ -20,7 +26,7 @@ export const ChatMessage: React.FC<MessageProps> = ({ message, onSelectOption })
                 transition={{ duration: 0.3 }}
             >
 
-                <Flex alignItems="center" gap={2}>
+                <Flex alignItems="center" gap={2} ref={ref}>
                     {message.owner == "chatbot" && (
                         <Image
                             src="/apple-touch-icon.png"

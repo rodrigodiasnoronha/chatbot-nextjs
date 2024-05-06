@@ -25,8 +25,6 @@ app.prepare().then(async () => {
     const io = socketIO(httpServer);
 
     io.on("connection", (socket) => {
-        console.log("Client connected");
-
         io.emit("receive-message", [{
             content: "Olá, em que posso ajudar?",
             id: Math.random().toString(16).slice(2),
@@ -45,6 +43,12 @@ app.prepare().then(async () => {
             owner: "chatbot",
             type: "option",
             action: "select-option"
+        }, {
+            content: "Gostaria de podar uma árvore",
+            id: `${Math.random().toString(16).slice(2)}-option-podar-arvore`,
+            owner: "chatbot",
+            type: "option",
+            action: "select-option"
         }]);
 
 
@@ -55,6 +59,14 @@ app.prepare().then(async () => {
             // usuário selecinou alguma opção
             if (data.type == "option") {
                 if (data.id.includes("option-buraco-rua")) {
+                    io.emit("receive-message", {
+                        content: "Por favor, digite o seu CEP",
+                        id: Math.random().toString(16).slice(2),
+                        owner: "chatbot",
+                        type: "text",
+                        action: "type-cep"
+                    });
+                } else if (data.id.includes("option-podar-arvore")) {
                     io.emit("receive-message", {
                         content: "Por favor, digite o seu CEP",
                         id: Math.random().toString(16).slice(2),
